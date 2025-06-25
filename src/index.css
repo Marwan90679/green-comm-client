@@ -1,0 +1,68 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+
+
+
+.raleway{
+  font-family: "Raleway", sans-serif;
+}
+li,button{
+  cursor: pointer;
+}
+
+/* .active{
+  text-decoration: underline wavy green 2px;
+  text-underline-offset: 10px;
+} */
+
+
+#app {
+  height: 100%;
+}
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  border-radius: 20px;
+  text-align: center;
+  font-size: 18px;
+
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.swiper {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
