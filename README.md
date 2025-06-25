@@ -40,7 +40,7 @@
 
 ### 🔐 Auth
 
-* Firebase Authentication (Email & Password)
+* Firebase Authentication (Email & Password) & Google (social login)
 
 ---
 
