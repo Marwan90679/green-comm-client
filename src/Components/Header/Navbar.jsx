@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import logo from "/Adobe Express - file (3).png";
 import bgNav from "../../assets/download.jpg";
 import { Link, NavLink, useNavigate } from "react-router";
@@ -9,15 +9,17 @@ import "react-tooltip/dist/react-tooltip.css";
 import { useDarkMode } from "../../Contexts/theme/ThemeProvider";
 import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
+import Loading from "../../Pages/Loading";
 
 const Navbar = () => {
+
+  
   const { darkMode, setDarkMode } = useDarkMode();
-  const { user, logOut } = React.useContext(AuthContext);
+  const { user, logOut ,loading} = React.useContext(AuthContext);
   const navigate = useNavigate();
   const [showLogout, setShowLogout] = useState(false);
   const handleTheme = () => {
     setDarkMode(!darkMode);
-    console.log(darkMode);
   };
   const handleLogout = () => {
     logOut()
@@ -27,7 +29,7 @@ const Navbar = () => {
       })
       .catch((error) => console.log(error));
   };
-
+  if(loading)return<Loading></Loading>
   return (
     <nav>
       {/* Tooltips */}
@@ -40,6 +42,16 @@ const Navbar = () => {
         style={{ backgroundImage: `url(${bgNav})` }}
       >
         <div className="flex items-center justify-between px-8 py-3">
+          {/* Logo */}
+          <Link
+            to="/"
+            className="flex items-center cursor-pointer hover:scale-101"
+          >
+            <img src={logo} alt="logo" className="w-20" />
+            <h4 className="-ml-4 text-2xl font-bold text-fuchsia-950 hover:text-green-800">
+              Green Commandos
+            </h4>
+          </Link>
           {/* Nav Links */}
           <ul className="flex space-x-5 text-lg font-medium text-gray-800">
             <NavLink
@@ -78,18 +90,6 @@ const Navbar = () => {
               My Tips
             </NavLink>
           </ul>
-
-          {/* Logo */}
-          <Link
-            to="/"
-            className="flex items-center cursor-pointer hover:scale-101"
-          >
-            <img src={logo} alt="logo" className="w-20" />
-            <h4 className="-ml-4 text-2xl font-bold text-fuchsia-950 hover:text-green-800">
-              Green Commandos
-            </h4>
-          </Link>
-
           {/* User Section */}
           <div className="flex items-center gap-4 relative">
             {!user && (

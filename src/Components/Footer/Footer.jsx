@@ -5,89 +5,101 @@ import logo from "/Adobe Express - file (3).png";
 
 const Footer = () => {
   return (
-    <footer className="footer sm:footer-horizontal bg-green-900 text-green-100 p-10">
-      {/* Logo & description */}
-      <div className="flex flex-col items-center sm:items-start gap-4 sm:gap-6">
-        <img src={logo} alt="Green Commandos Logo" className="w-40 md:w-60 drop-shadow-2xl" />
-        <p className="text-lg font-bold">Green Commandos</p>
-        <p className="text-green-300">On mission of Greenery</p>
-        <p className="text-sm text-green-400">&copy; {new Date().getFullYear()} - All rights reserved</p>
+    <footer className="bg-gray-900 text-gray-100 py-10 px-6 md:px-20">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+        {/* Logo / Brand */}
+        <div>
+          <img src={logo} alt="Green Commandos logo" className="w-32 mb-3" />
+          <h2 className="text-2xl font-bold text-emerald-500 mb-2">
+            Green Commandos
+          </h2>
+          <p className="text-sm text-gray-400">
+            On a mission of Greenery—empowering communities to grow greener,
+            one plant at a time.
+          </p>
+        </div>
 
-        {/* Social Links */}
-        <div className="flex gap-6 mt-2">
-          <a
-            href="https://twitter.com/yourprofile"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Twitter"
-            className="hover:text-green-400 transition-transform hover:scale-110"
-          >
-            <FaTwitter size={28} />
-          </a>
-          <a
-            href="https://www.youtube.com/yourchannel"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="YouTube"
-            className="hover:text-green-400 transition-transform hover:scale-110"
-          >
-            <FaYoutube size={28} />
-          </a>
-          <a
-            href="https://www.facebook.com/yourpage"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-            className="hover:text-green-400 transition-transform hover:scale-110"
-          >
-            <FaFacebookF size={28} />
-          </a>
+        {/* Navigation */}
+        <div>
+          <h4 className="text-lg font-semibold mb-3">Quick Links</h4>
+          <ul className="space-y-2 text-gray-300 text-sm">
+            <li>
+              <Link to="/" className="hover:text-emerald-400">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/services" className="hover:text-emerald-400">
+                Services
+              </Link>
+            </li>
+            <li>
+              <Link to="/gardens" className="hover:text-emerald-400">
+                Explore Gardens
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="hover:text-emerald-400">
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Contact */}
+        <div>
+          <h4 className="text-lg font-semibold mb-3">Contact</h4>
+          <ul className="space-y-2 text-gray-300 text-sm">
+            <li>
+              Email:{" "}
+              <a
+                href="mailto:support@greencommandos.com"
+                className="text-emerald-400"
+              >
+                support@greencommandos.com
+              </a>
+            </li>
+            <li>Phone: +880-1234-567890</li>
+            <li>Location: Sylhet, Bangladesh</li>
+          </ul>
+        </div>
+
+        {/* Social Media */}
+        <div>
+          <h4 className="text-lg font-semibold mb-3">Follow Us</h4>
+          <div className="flex gap-4">
+            <a
+              href="https://twitter.com/yourprofile"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-emerald-400 transition-transform hover:scale-110"
+            >
+              <FaTwitter size={24} />
+            </a>
+            <a
+              href="https://www.youtube.com/yourchannel"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-emerald-400 transition-transform hover:scale-110"
+            >
+              <FaYoutube size={24} />
+            </a>
+            <a
+              href="https://www.facebook.com/yourpage"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-emerald-400 transition-transform hover:scale-110"
+            >
+              <FaFacebookF size={24} />
+            </a>
+          </div>
         </div>
       </div>
 
-      {/* Services */}
-      <nav>
-        <h6 className="footer-title">Services</h6>
-        <Link to="#" className="link link-hover">Branding</Link>
-        <Link to="#" className="link link-hover">Design</Link>
-        <Link to="#" className="link link-hover">Marketing</Link>
-        <Link to="#" className="link link-hover">Advertisement</Link>
-      </nav>
-
-      {/* Company */}
-      <nav>
-        <h6 className="footer-title">Company</h6>
-        <Link to="#" className="link link-hover">About us</Link>
-        <Link to="#" className="link link-hover">Contact</Link>
-        <Link to="#" className="link link-hover">Jobs</Link>
-        <Link to="#" className="link link-hover">Press kit</Link>
-      </nav>
-
-      {/* Legal */}
-      <nav>
-        <h6 className="footer-title">Legal</h6>
-        <Link to="#" className="link link-hover">Terms and Conditions</Link>
-      </nav>
-
-      {/* Newsletter */}
-      <form className="w-full max-w-xs">
-        <h6 className="footer-title">Newsletter</h6>
-        <fieldset className="w-full">
-          <label className="label">
-            <span className="label-text">Enter your email address</span>
-          </label>
-          <div className="join">
-            <input
-              type="email"
-              placeholder="username@site.com"
-              className="input input-bordered join-item w-full"
-            />
-            <button type="submit" className="btn btn-primary join-item">
-              Subscribe
-            </button>
-          </div>
-        </fieldset>
-      </form>
+      {/* Bottom strip */}
+      <div className="mt-10 text-center text-gray-500 text-sm border-t border-gray-700 pt-4">
+        © {new Date().getFullYear()} Green Commandos. All rights reserved.
+      </div>
     </footer>
   );
 };

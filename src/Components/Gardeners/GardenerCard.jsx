@@ -1,28 +1,46 @@
 import React from 'react';
 
 const GardenerCard = ({ gardener }) => {
-  const { name, location, profileImage, experience, specialties, bio } = gardener;
+  const {
+    name = "Anonymous Gardener",
+    location = "Unknown Location",
+    profileImage,
+    experience = "Less than 1 year",
+    specialties = [],
+    bio = "No bio available yet.",
+  } = gardener;
 
   return (
-    <div className="card bg-green-50 border border-green-200 shadow-md p-4 rounded-xl">
-      <figure className="w-full h-48 overflow-hidden rounded-xl">
-        <img src={profileImage} alt={name} className=" object-cover" />
+    <div className="bg-green-50 dark:bg-gray-800 border border-green-200 dark:border-green-700 shadow-md hover:shadow-lg transition rounded-xl overflow-hidden">
+      <figure className="w-full h-48 md:h-56 bg-gray-200 dark:bg-gray-700">
+        <img
+          src={profileImage || "https://via.placeholder.com/400x250?text=No+Image"}
+          alt={name}
+          className="w-full h-full object-cover "
+        />
       </figure>
-      <div className="p-4 space-y-2">
-        <h3 className="text-xl font-semibold text-green-900">{name}</h3>
-        <p className="text-sm text-gray-600">{location}</p>
-        <p className="text-sm text-gray-700">Experience: {experience}</p>
-        <div className="flex flex-wrap gap-2">
-          {specialties.map((spec, i) => (
-            <span
-              key={i}
-              className="bg-green-200 text-green-800 px-2 py-1 rounded-full text-xs font-medium"
-            >
-              {spec}
-            </span>
-          ))}
-        </div>
-        <p className="text-sm text-gray-700">{bio}</p>
+
+      <div className="p-5 space-y-3">
+        <h3 className="text-xl font-semibold text-green-900 dark:text-green-300">{name}</h3>
+        <p className="text-sm text-gray-600 dark:text-gray-400">{location}</p>
+        <p className="text-sm text-gray-700 dark:text-gray-300">
+          <span className="font-medium">Experience:</span> {experience}
+        </p>
+
+        {specialties.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {specialties.map((spec, i) => (
+              <span
+                key={i}
+                className="bg-green-200 dark:bg-green-600 text-green-900 dark:text-white px-2 py-1 rounded-full text-xs font-medium"
+              >
+                {spec}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <p className="text-sm text-gray-700 dark:text-gray-300">{bio}</p>
       </div>
     </div>
   );
