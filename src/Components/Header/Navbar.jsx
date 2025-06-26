@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import logo from "/Adobe Express - file (3).png";
 import bgNav from "../../assets/download.jpg";
 import { Link, NavLink, useNavigate } from "react-router";
@@ -12,15 +12,15 @@ import { CiLight } from "react-icons/ci";
 import Loading from "../../Pages/Loading";
 
 const Navbar = () => {
-
-  
   const { darkMode, setDarkMode } = useDarkMode();
-  const { user, logOut ,loading} = React.useContext(AuthContext);
+  const { user, logOut, loading } = React.useContext(AuthContext);
   const navigate = useNavigate();
   const [showLogout, setShowLogout] = useState(false);
+
   const handleTheme = () => {
     setDarkMode(!darkMode);
   };
+
   const handleLogout = () => {
     logOut()
       .then(() => {
@@ -29,10 +29,62 @@ const Navbar = () => {
       })
       .catch((error) => console.log(error));
   };
-  if(loading)return<Loading></Loading>
+
+  const navLinks = (
+    <>
+      <NavLink
+        to="/"
+        className="hover:text-neutral-800 tooltip-link"
+        data-tooltip-content="Go to Home"
+      >
+        Home
+      </NavLink>
+      {/* <NavLink
+        to="/share-tips"
+        className="hover:text-neutral-800 tooltip-link"
+        data-tooltip-content="Share gardening tips"
+      >
+        Share Tips
+      </NavLink> */}
+      <NavLink
+        to="/explore-gardeners"
+        className="hover:text-neutral-800 tooltip-link"
+        data-tooltip-content="Meet expert gardeners"
+      >
+        Explore Gardeners
+      </NavLink>
+      <NavLink
+        to="/browse-tips"
+        className="hover:text-neutral-800 tooltip-link"
+        data-tooltip-content="Browse community tips"
+      >
+        Browse Tips
+      </NavLink>
+      {user && (
+        <>
+          <NavLink
+            to="/dashboard"
+            className="hover:text-neutral-800 tooltip-link"
+            data-tooltip-content="Your submitted tips"
+          >
+            Dashboard
+          </NavLink>
+          {/*  // <NavLink
+        //   to="/my-tips"
+        //   className="hover:text-neutral-800 tooltip-link"
+        //   data-tooltip-content="Your submitted tips"
+        // >
+        //   My Tips
+        // </NavLink> */}
+        </>
+      )}
+    </>
+  );
+
+  if (loading) return <Loading />;
+
   return (
     <nav>
-      {/* Tooltips */}
       <Tooltip anchorSelect=".tooltip-link" place="bottom" />
       <Tooltip id="profile-tooltip" place="bottom" />
 
@@ -48,122 +100,84 @@ const Navbar = () => {
             className="flex items-center cursor-pointer hover:scale-101"
           >
             <img src={logo} alt="logo" className="w-20" />
-            <h4 className="-ml-4 text-2xl font-bold text-fuchsia-950 hover:text-green-800">
+            <h4 className="-ml-4  text-2xl font-bold text-fuchsia-950 dark:text-green-800">
               Green Commandos
             </h4>
           </Link>
+
           {/* Nav Links */}
-          <ul className="flex space-x-5 text-lg font-medium text-gray-800">
-            <NavLink
-              to="/"
-              className="hover:font-bold tooltip-link"
-              data-tooltip-content="Go to Home"
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/share-tips"
-              className="hover:font-bold tooltip-link"
-              data-tooltip-content="Share gardening tips"
-            >
-              Share Tips
-            </NavLink>
-            <NavLink
-              to="/explore-gardeners"
-              className="hover:font-bold "
-              data-tooltip-content="Meet expert gardeners"
-            >
-              Explore Gardeners
-            </NavLink>
-            <NavLink
-              to="/browse-tips"
-              className="hover:font-bold tooltip-link"
-              data-tooltip-content="Browse community tips"
-            >
-              Browse Tips
-            </NavLink>
-            <NavLink
-              to="/my-tips"
-              className="hover:font-bold tooltip-link"
-              data-tooltip-content="Your submitted tips"
-            >
-              My Tips
-            </NavLink>
+          <ul className="flex space-x-5 text-lg font-medium text-neutral-950 ">
+            {navLinks}
           </ul>
+
           {/* User Section */}
           <div className="flex items-center gap-4 relative">
             {!user && (
               <>
                 <Link
                   to="/signup"
-                  className="border-black border px-6 py-2 rounded-full font-semibold hover:bg-amber-50"
+                  className="border border-gray-700  px-6 py-2 rounded-full font-semibold hover:text-white hover:bg-green-600 hover:border-0 text-gray-900 "
                 >
                   Sign Up
                 </Link>
                 <Link
                   to="/signin"
-                  className="border-black border px-6 py-2 rounded-full font-semibold hover:bg-amber-50"
+                  className="border border-gray-700  px-6 py-2 rounded-full font-semibold hover:text-white hover:bg-green-600 hover:border-0 text-gray-900 "
                 >
                   Sign In
                 </Link>
               </>
             )}
 
-            <div className="flex items-center">
-              {user && (
-                <div className="relative group ">
-                  <div className="dropdown dropdown-start">
-                    <div tabIndex={0} role="button" className="m-1">
-                      <div
-                        className="bg-blue-600 p-1 rounded-full cursor-pointer"
-                        data-tooltip-id="profile-tooltip"
-                        data-tooltip-content={user.displayName}
-                      >
-                        <img
-                          className="w-10 h-10 rounded-full object-cover"
-                          src={
-                            user.photoURL ||
-                            "https://img.icons8.com/?size=256&id=14736&format=png"
-                          }
-                          alt="Profile"
-                        />
-                      </div>
-                    </div>
-                    <ul
-                      tabIndex={0}
-                      className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
-                    >
-                      <li>
-                        <button
-                          onClick={handleLogout}
-                          className="block w-full text-left px-6 py-3 text-red-600 hover:bg-red-100 font-medium"
-                        >
-                          Log Out
-                        </button>
-                      </li>
-                    </ul>
+            {user && (
+              <div className="relative dropdown dropdown-start">
+                <div tabIndex={0} role="button" className="m-1">
+                  <div
+                    className="bg-blue-600 p-1 rounded-full cursor-pointer"
+                    data-tooltip-id="profile-tooltip"
+                    data-tooltip-content={user.displayName}
+                  >
+                    <img
+                      className="w-10 h-10 rounded-full object-cover"
+                      src={
+                        user.photoURL ||
+                        "https://img.icons8.com/?size=256&id=14736&format=png"
+                      }
+                      alt="Profile"
+                    />
                   </div>
                 </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu bg-base-100 dark:bg-gray-800 rounded-box z-1 w-52 p-2 shadow-sm"
+                >
+                  <li>
+                    <button
+                      onClick={handleLogout}
+                      className="block w-full text-left px-6 py-3 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-800 font-medium rounded-lg"
+                    >
+                      Log Out
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            )}
+
+            {/* Theme Switch */}
+            <button onClick={handleTheme}>
+              {darkMode ? (
+                <CiLight className="text-white" size={37} />
+              ) : (
+                <MdDarkMode className="text-black" size={37} />
               )}
-              <button onClick={handleTheme}>
-                {darkMode ? (
-                  <CiLight
-                    className={darkMode ? "text-white" : "text-black"}
-                    size={37}
-                  />
-                ) : (
-                  <MdDarkMode size={37} />
-                )}
-              </button>
-            </div>
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile & Tablet Navbar */}
-      <div className="navbar  shadow-sm md:hidden">
+      {/* Mobile Navbar */}
+      <div className="navbar shadow-sm md:hidden">
         <div className="flex items-center justify-between w-full px-4">
-          {/* Mobile menu */}
           <div className="dropdown">
             <div className="flex items-center">
               <div tabIndex={0} role="button" className="btn btn-ghost">
@@ -184,35 +198,19 @@ const Navbar = () => {
               </div>
               <button onClick={handleTheme}>
                 {darkMode ? (
-                  <CiLight
-                    className={darkMode ? "text-white" : "text-black"}
-                    size={25}
-                  />
+                  <CiLight className="text-white" size={25} />
                 ) : (
                   <MdDarkMode size={25} />
                 )}
               </button>
             </div>
+
             <ul
-              style={{ backgroundImage: `url(${bgNav})` }}
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 text-lg font-medium"
+              style={{ backgroundImage: `url(${bgNav})` }}
+              className="dark:text-black menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 text-lg font-medium"
             >
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/share-tips">Share Tips</Link>
-              </li>
-              <li>
-                <Link to="/my-tips">My Tips</Link>
-              </li>
-              <li>
-                <Link to="#">Explore Gardeners</Link>
-              </li>
-              <li>
-                <Link to="/browse-tips">Browse Tips</Link>
-              </li>
+              {navLinks}
               {!user && (
                 <>
                   <li>
@@ -223,16 +221,24 @@ const Navbar = () => {
                   </li>
                 </>
               )}
+              {user && (
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="block w-30 text-left px-6 py-3 text-red-600 dark:text-red-400 bg-amber-50 font-medium rounded-lg"
+                  >
+                    Log Out
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
 
-          {/* Logo */}
           <Link to="/" className="flex items-center gap-1">
             <img src={logo} className="w-12" alt="logo" />
-            <p className="text-lg font-bold">Green Commandos</p>
+            <p className="text-lg font-bold text-black">Green Commandos</p>
           </Link>
 
-          {/* Profile (optional on mobile) */}
           {user && (
             <div
               className="bg-blue-600 p-1 rounded-full cursor-pointer relative"
@@ -249,10 +255,10 @@ const Navbar = () => {
                 alt="Profile"
               />
               {showLogout && (
-                <div className="absolute top-14 right-0 bg-white rounded-lg shadow z-50">
+                <div className="absolute top-14 right-0 bg-white dark:bg-gray-800 rounded-lg shadow z-50">
                   <button
                     onClick={handleLogout}
-                    className="block w-full text-left px-6 py-3 text-red-600 hover:bg-red-100 font-medium"
+                    className="block w-full text-left px-6 py-3 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-800 font-medium rounded-lg"
                   >
                     Log Out
                   </button>
