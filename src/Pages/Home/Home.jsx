@@ -17,8 +17,8 @@ const Home = () => {
           </div>
             <div className='md:w-9/12 mx-auto '>
             <Hero></Hero>
-            <GardenerContainer></GardenerContainer>
             <TrendingTips></TrendingTips>
+            <GardenerContainer></GardenerContainer>          
             <Review></Review>
             <Benefits></Benefits>
         </div>

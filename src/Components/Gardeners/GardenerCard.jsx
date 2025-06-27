@@ -16,6 +16,7 @@ const GardenerCard = ({ gardener }) => {
         <img
           src={profileImage || "https://via.placeholder.com/400x250?text=No+Image"}
           alt={name}
+          loading='lazy'
           className="w-full h-full object-cover "
         />
       </figure>

@@ -7,7 +7,7 @@ const GardenerCard = ({ gardener }) => {
     gender,
     age,
     experience,
-    totalTips,
+    sharedTips,
     status,
     fromGoogle,
   } = gardener;
@@ -18,6 +18,7 @@ const GardenerCard = ({ gardener }) => {
         src={profileImage || "https://via.placeholder.com/150"}
         alt={name}
         className="w-full h-56 object-cover rounded-xl mb-4"
+        loading="lazy"
       />
       <h3 className="text-xl font-bold text-green-800 dark:text-green-300">
         {name || "Anonymous"}
@@ -43,7 +44,7 @@ const GardenerCard = ({ gardener }) => {
 
       <p className="text-sm text-gray-700 dark:text-gray-300">
         <span className="font-medium">Tips Shared:</span>{" "}
-        {typeof totalTips === "number" ? totalTips : 0}
+        {typeof sharedTips === "number" ? sharedTips : 0}
       </p>
 
       {fromGoogle && (

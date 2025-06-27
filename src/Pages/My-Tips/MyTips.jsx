@@ -142,7 +142,7 @@ const MyTips = () => {
             You haven't shared any tips yet
           </h3>
           <button className="bg-green-700 hover:bg-green-800 px-8 py-5 rounded-2xl text-white font-medium md:font-bold md:w-1/4 mx-auto md:text-2xl">
-            <Link to="/share-tips" className="block w-full h-full">
+            <Link to="/dashboard/share-tips" className="block w-full h-full">
               Share a garden tip now
             </Link>
           </button>

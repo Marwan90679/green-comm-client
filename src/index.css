@@ -65,4 +65,11 @@ body {
   margin-right: auto;
 }
 
+.active{
+  text-decoration: underline wavy rgb(31, 87, 40) 50%;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 3px;
+
+
+}
 

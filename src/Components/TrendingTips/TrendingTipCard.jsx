@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router";
+import { FaEye } from "react-icons/fa";
 
 const TrendingTipCard = ({ tip }) => {
   const { image, title, description, userName } = tip;
@@ -8,6 +10,7 @@ const TrendingTipCard = ({ tip }) => {
       {/* Image */}
       {image ? (
         <img
+          loading="lazy"
           src={image}
           alt={title || "Tip"}
           className="w-full h-40 object-cover"
@@ -37,6 +40,16 @@ const TrendingTipCard = ({ tip }) => {
         {/* Author */}
         <div className="text-xs text-right text-white dark:text-gray-400">
           {userName ? `By: ${userName}` : "By: Anonymous"}
+        </div>
+        <div className="flex justify-center">
+          <Link to={`/tip/${tip._id}`}>
+            <button
+              className="flex items-center gap-2 bg-green-600 hover:bg-green-700 
+                        text-white px-4 py-2 rounded-md transition text-sm focus:outline-none focus:ring-2 focus:ring-green-400"
+            >
+              <FaEye /> View Details
+            </button>
+          </Link>
         </div>
       </div>
     </div>

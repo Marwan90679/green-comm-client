@@ -19,7 +19,7 @@ const TrendingTips = () => {
   }, []);
 
   return (
-    <section className="my-12 px-4 sm:px-8 md:px-16 text-center">
+    <section className="my-12 px-4 sm:px-8  text-center">
       <h2 className="text-2xl md:text-4xl font-bold text-green-900 dark:text-green-300 mb-4">
         Top&nbsp;Trending&nbsp;Tips
       </h2>
@@ -44,7 +44,7 @@ const TrendingTips = () => {
       )}
 
       {!loading && tips.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {tips.map((tip) => (
             <TrendingTipCard key={tip._id} tip={tip} />
           ))}

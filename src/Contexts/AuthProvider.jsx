@@ -5,17 +5,18 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
   updateProfile,
 } from "firebase/auth";
-import Loading from "../Pages/Loading";
+
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const [loading, setLoading] = useState(true); // default to true
   const googleSignIn = () => {
     setLoading(true);
     const provider = new GoogleAuthProvider();
@@ -26,10 +27,12 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
+
   const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
+
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
@@ -43,12 +46,19 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+  const verifyEmail = () => {
+    setLoading(true);
+    return sendEmailVerification(auth.currentUser, {
+      url: `${window.location.origin}/dashboard`, 
+      handleCodeInApp: true,
+    });
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
     });
-
     return () => unsubscribe();
   }, []);
 
@@ -62,11 +72,14 @@ const AuthProvider = ({ children }) => {
     setLoading,
     googleSignIn,
     updateUserInfo,
-  
+    verifyEmail,
   };
 
-
-  return <AuthContext value={userInfo}>{children}</AuthContext>;
+  return (
+    <AuthContext.Provider value={userInfo}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;
