@@ -54,6 +54,20 @@ const Navbar = () => {
         Explore Gardeners
       </NavLink>
       <NavLink
+        to="/contact"
+        className="hover:text-neutral-800 tooltip-link"
+        data-tooltip-content="Meet expert gardeners"
+      >
+        Contact Us
+      </NavLink>
+      <NavLink
+        to="/about"
+        className="hover:text-neutral-800 tooltip-link"
+        data-tooltip-content="Meet expert gardeners"
+      >
+      About Us
+              </NavLink>
+      <NavLink
         to="/browse-tips"
         className="hover:text-neutral-800 tooltip-link"
         data-tooltip-content="Browse community tips"

@@ -6,7 +6,6 @@ import SignUp from "../Components/Authentication/SignUp";
 import SignIn from "../Components/Authentication/SignIn";
 import TermsAndConditions from "../Components/T&C/TermsAndConditions";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
-import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import ShareTips from "../Pages/Share-tips/ShareTips";
 import BrowseTips from "../Pages/Browse-Tips/BrowseTips";
 import TipsCard from "../Pages/Browse-Tips/TipsCard";
@@ -15,12 +14,15 @@ import UpdateTips from "../Components/UpdateTips/UpdateTips";
 import ExploreGardeners from "../Components/ExploreGardeners/ExploreGardeners";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Stats from "../Components/Dashboard-components/Stats";
+import Contact from "../Pages/Contact/Contact";
+import About from "../Pages/About/About";
+import Error from "../Pages/ErrorPage/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayouts,
-    errorElement: <ErrorPage />,
+    errorElement: <Error/>,
     children: [
       { index: true, Component: Home },
       {
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
       {
         path: "signIn", // Removed leading slash
         Component: SignIn,
+      },
+      {
+        path: "contact", // Removed leading slash
+        Component: Contact,
+      },
+      {
+        path: "about", // Removed leading slash
+        Component: About,
       },
       {
         path: "terms&conditions", // Removed leading slash
@@ -62,7 +72,7 @@ const router = createBrowserRouter([
   {
     path: "dashboard",
     Component: DashboardLayout,
-    errorElement: <ErrorPage />, // Added error boundary for dashboard
+    errorElement: <Error/>, // Added error boundary for dashboard
     children: [
       {
         index: true,

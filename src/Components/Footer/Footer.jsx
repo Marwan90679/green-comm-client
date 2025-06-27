@@ -29,18 +29,23 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/services" className="hover:text-emerald-400">
-                Services
+              <Link to="/explore-gardeners" className="hover:text-emerald-400">
+                Explore Gardeners
               </Link>
             </li>
             <li>
-              <Link to="/gardens" className="hover:text-emerald-400">
-                Explore Gardens
+              <Link to="/browse-tips" className="hover:text-emerald-400">
+                Browser Tips
               </Link>
             </li>
             <li>
               <Link to="/contact" className="hover:text-emerald-400">
                 Contact
+              </Link>
+            </li>
+            <li>
+              <Link to="/about" className="hover:text-emerald-400">
+                About Us
               </Link>
             </li>
           </ul>
@@ -53,10 +58,10 @@ const Footer = () => {
             <li>
               Email:{" "}
               <a
-                href="mailto:support@greencommandos.com"
+                href="mailto:greencommandos@fakeemail.com"
                 className="text-emerald-400"
               >
-                support@greencommandos.com
+                greencommandos@fakeemail.com
               </a>
             </li>
             <li>Phone: +880-1234-567890</li>
